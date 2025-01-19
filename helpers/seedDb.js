@@ -3,11 +3,11 @@ const { Pool } = require('pg');
 
 // Database connection configuration
 const pool = new Pool({
-  user: '<username>',
-  host: 'localhost',
-  database: '<database>',
-  password: '<password>',
-  port: 5432,
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: 'public',
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 
 // Dummy data for Indian users
@@ -127,6 +127,18 @@ const userData = [
 // Seed data into the database
 const seedUsers = async () => {
   try {
+    const query = `
+    CREATE TABLE IF NOT EXISTS users (
+      id SERIAL PRIMARY KEY,
+      name VARCHAR(255),
+      age INT,
+      address JSONB,
+      additional_info JSONB,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+  `;
+  await pool.query(query);
     for (const user of userData) {
       const query = `
         INSERT INTO users (name, age, address, additional_info)

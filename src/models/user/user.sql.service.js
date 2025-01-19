@@ -15,16 +15,23 @@ class UserSqlService {
         return await this.User.bulkCreate(users);
     }
 
-    async getUsersByQuery(query) {
-        return await this.User.findAll(query);
+    async getAgeDistribution() {
+        return await this.User.findAll({
+            attributes: ['age'],
+            raw: true,
+            order: [['age', 'ASC']]
+        });
     }
 
     async getUserById(id) {
-        return await this.User.findOne({ where: { id } });
+        return await this.User.findByPk(id, { raw: true });
     }
 
     async updateUser(id, user) {
-        return await this.User.update(user, { where: { id } });
+        return await this.User.update(user, { 
+            where: { id },
+            returning: true
+        });
     }
 }
 

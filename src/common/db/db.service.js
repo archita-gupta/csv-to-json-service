@@ -10,7 +10,7 @@ class DatabaseService {
       database: process.env.DB_NAME,
       dialect: 'postgres',
       schema: 'public',
-      logging: console.log,
+      logging: false,
       pool: {
         max: 5,
         min: 0,
