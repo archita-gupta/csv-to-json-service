@@ -36,8 +36,6 @@ const server = app.listen(port, () => {
           Global error handlers for server 
  * *****************************************************/
 
-// Handle different termination signals
-
 
 process.on('uncaughtException', (error) => {
     console.error('UNCAUGHT EXCEPTION! 💥 Shutting down...');
