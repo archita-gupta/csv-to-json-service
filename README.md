@@ -40,9 +40,9 @@ The application runs on port 3000.
 
 ### ROUTES
 /convert-to-json:
-    - Inserts the users records into database
-    - Handles Age analysis distribution
-    - Returns a csv compatible JSON object
+- Inserts the users records into database
+- Handles Age analysis distribution
+- Returns a csv compatible JSON object
 
 
 ## License
